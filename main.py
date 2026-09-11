@@ -34,3 +34,14 @@ class FocusTimerApp(ctk.CTk):
         self.time_var = ctk.StringVar(value=self._format(self.seconds_left))
         ctk.CTkLabel(self, textvariable=self.time_var, font=ctk.CTkFont(size=54, weight="bold"),
                      text_color=ACCENT).pack(pady=(30, 4))
+
+        self.mode_var = ctk.StringVar(value="Focus session")
+        ctk.CTkLabel(self, textvariable=self.mode_var, text_color="#8a8a8a").pack()
+
+        button_row = ctk.CTkFrame(self, fg_color=BG)
+        button_row.pack(pady=20)
+        self.toggle_btn = ctk.CTkButton(button_row, text="Start", fg_color="#2a2a30",
+                                        command=self._toggle)
+        self.toggle_btn.pack(side="left", padx=6)
+        ctk.CTkButton(button_row, text="Reset", fg_color="#2a2a30",
+                      command=self._reset).pack(side="left", padx=6)
