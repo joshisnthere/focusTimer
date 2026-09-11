@@ -26,3 +26,11 @@ class FocusTimerApp(ctk.CTk):
         self.title("Focus Timer")
         self.geometry("640x560")
         self.configure(fg_color=BG)
+
+        self.mode = "work"
+        self.seconds_left = WORK_MINUTES * 60
+        self.running = False
+
+        self.time_var = ctk.StringVar(value=self._format(self.seconds_left))
+        ctk.CTkLabel(self, textvariable=self.time_var, font=ctk.CTkFont(size=54, weight="bold"),
+                     text_color=ACCENT).pack(pady=(30, 4))
