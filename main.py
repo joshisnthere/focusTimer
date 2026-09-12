@@ -55,3 +55,15 @@ class FocusTimerApp(ctk.CTk):
 
     def _format(self, seconds):
         return f"{seconds // 60:02d}:{seconds % 60:02d}"
+
+    def _toggle(self):
+        self.running = not self.running
+        self.toggle_btn.configure(text="Pause" if self.running else "Start")
+
+    def _reset(self):
+        self.running = False
+        self.toggle_btn.configure(text="Start")
+        self.mode = "work"
+        self.seconds_left = WORK_MINUTES * 60
+        self.mode_var.set("Focus session")
+        self.time_var.set(self._format(self.seconds_left))
