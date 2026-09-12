@@ -45,3 +45,13 @@ class FocusTimerApp(ctk.CTk):
         self.toggle_btn.pack(side="left", padx=6)
         ctk.CTkButton(button_row, text="Reset", fg_color="#2a2a30",
                       command=self._reset).pack(side="left", padx=6)
+
+        ctk.CTkLabel(self, text="Last 7 days (focus minutes)", text_color="#8a8a8a").pack(anchor="w", padx=24, pady=(20, 4))
+        self.canvas = ctk.CTkCanvas(self, bg=PANEL, height=160, width=580, highlightthickness=0)
+        self.canvas.pack(padx=24, pady=(0, 20))
+        self._draw_chart()
+
+        self._tick()
+
+    def _format(self, seconds):
+        return f"{seconds // 60:02d}:{seconds % 60:02d}"
