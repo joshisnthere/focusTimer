@@ -75,3 +75,15 @@ class FocusTimerApp(ctk.CTk):
                 self._switch_mode()
             self.time_var.set(self._format(max(0, self.seconds_left)))
         self.after(1000, self._tick)
+
+    def _switch_mode(self):
+        if self.mode == "work":
+            log.record_session(WORK_MINUTES)
+            self._draw_chart()
+            self.mode = "break"
+            self.seconds_left = BREAK_MINUTES * 60
+            self.mode_var.set("Break")
+        else:
+            self.mode = "work"
+            self.seconds_left = WORK_MINUTES * 60
+            self.mode_var.set("Focus session")
