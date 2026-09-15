@@ -87,3 +87,11 @@ class FocusTimerApp(ctk.CTk):
             self.mode = "work"
             self.seconds_left = WORK_MINUTES * 60
             self.mode_var.set("Focus session")
+
+    def _draw_chart(self):
+        self.canvas.delete("all")
+        daily = log.last_n_days(7)
+        max_minutes = max([m for _, m in daily] + [WORK_MINUTES])
+        bar_width = 60
+        gap = 20
+        base_y = 140
