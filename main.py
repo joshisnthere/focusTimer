@@ -95,3 +95,14 @@ class FocusTimerApp(ctk.CTk):
         bar_width = 60
         gap = 20
         base_y = 140
+
+        for i, (day_label, minutes) in enumerate(daily):
+            height = int((minutes / max_minutes) * 100) if max_minutes else 0
+            x0 = 20 + i * (bar_width + gap)
+            self.canvas.create_rectangle(
+                x0, base_y - height, x0 + bar_width, base_y,
+                fill=ACCENT, outline="",
+            )
+            self.canvas.create_text(x0 + bar_width / 2, base_y + 12, text=day_label, fill="#8a8a8a")
+            if minutes:
+                self.canvas.create_text(x0 + bar_width / 2, base_y - height - 10, text=str(minutes), fill="#e6e6e6")
