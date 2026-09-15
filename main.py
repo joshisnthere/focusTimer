@@ -106,3 +106,8 @@ class FocusTimerApp(ctk.CTk):
             self.canvas.create_text(x0 + bar_width / 2, base_y + 12, text=day_label, fill="#8a8a8a")
             if minutes:
                 self.canvas.create_text(x0 + bar_width / 2, base_y - height - 10, text=str(minutes), fill="#e6e6e6")
+
+
+if __name__ == "__main__":
+    app = FocusTimerApp()
+    app.mainloop()
