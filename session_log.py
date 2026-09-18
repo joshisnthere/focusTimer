@@ -29,3 +29,12 @@ def record_session(minutes):
         "minutes": minutes,
     })
     _save(sessions)
+
+
+def last_n_days(n):
+    sessions = _load()
+    today = datetime.date.today()
+    totals = {}
+    for i in range(n):
+        day = today - datetime.timedelta(days=n - 1 - i)
+        totals[day.isoformat()] = 0
