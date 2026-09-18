@@ -38,3 +38,12 @@ def last_n_days(n):
     for i in range(n):
         day = today - datetime.timedelta(days=n - 1 - i)
         totals[day.isoformat()] = 0
+
+    for s in sessions:
+        if s["date"] in totals:
+            totals[s["date"]] += s["minutes"]
+
+    return [
+        (datetime.date.fromisoformat(d).strftime("%a"), minutes)
+        for d, minutes in totals.items()
+    ]
