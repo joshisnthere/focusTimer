@@ -15,3 +15,8 @@ def _load():
         with open(LOG_PATH) as f:
             return json.load(f)
     return []
+
+
+def _save(sessions):
+    with open(LOG_PATH, "w") as f:
+        json.dump(sessions, f, indent=2)
