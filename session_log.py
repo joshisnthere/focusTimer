@@ -20,3 +20,12 @@ def _load():
 def _save(sessions):
     with open(LOG_PATH, "w") as f:
         json.dump(sessions, f, indent=2)
+
+
+def record_session(minutes):
+    sessions = _load()
+    sessions.append({
+        "date": datetime.date.today().isoformat(),
+        "minutes": minutes,
+    })
+    _save(sessions)
